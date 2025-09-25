@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Timer</title>
+  <link rel="stylesheet" href="/navbar/navbar.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="/timer.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+</head>
+<body>
+  <div id="navbar"></div>
+  <div class="container">
+    <!-- Tasks Panel -->
+    <div class="addtask">
+      <div class="tabs">
+        <button class="tab-btn active" id="pendingTab">Pending</button>
+        <button class="tab-btn" id="completedTab">Completed</button>
+      </div>
+
+      <!-- Pending Tasks Table -->
+      <div class="pending-tasks">
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Task Name</th>
+              <th>Remaining Time</th>
+              <th>Priority</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="taskTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Task Form -->
+      <form id="field">
+        <label for="task_name">Task Name</label>
+        <input
+          type="text"
+          id="task_name"
+          name="taskName"
+          placeholder="Task Name"
+          required
+        />
+        <label for="task_time">Set Time (HH:MM:SS)</label>
+        <input
+          type="text"
+          id="task_time"
+          name="taskTime"
+          placeholder="e.g. 02:30:00"
+          pattern="^([0-9]{1,2}):([0-5][0-9]):([0-5][0-9])$"
+          title="Enter time as HH:MM:SS"
+          required
+        />
+        <div class="priority-btn-group">
+          <button type="button" class="btn priority" id="red" data-priority="High">High</button>
+          <button type="button" class="btn priority" id="orange" data-priority="Medium">Medium</button>
+          <button type="button" class="btn priority" id="green" data-priority="Low">Low</button>
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn" id="blue">Add</button>
+          <button type="button" class="btn" id="closeBtn">Cancel</button>
+        </div>
+      </form>
+
+      <!-- Add Task Button -->
+      <button class="add-btn" id="addTaskBtn">+ Add Task</button>
+
+      <!-- Completed Tasks Table -->
+      <div id="completedTasks" class="task-content" style="display: none">
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Task Name</th>
+              <th>Completed Time</th>
+              <th>Priority</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="completedTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Timer Panel -->
+    <div id="timerPanel">
+      <div class="timer-header">⏱ Timer</div>
+      <div class="circle-timer">
+        <svg class="progress-ring" width="220" height="220">
+          <circle
+            class="progress-ring__circle"
+            stroke="black"
+            stroke-width="3"
+            fill="transparent"
+            r="100"
+            cx="110"
+            cy="110"
+          />
+        </svg>
+        <div class="timer-content">
+          <div class="timer-taskname">---</div>
+          <div id="clock" class="timer-clock">00:00:00</div>
+          <div class="timer-meta">Allocated: 00:00:00</div>
+          <div class="timer-priority" data-priority="Low">Priority</div>
+        </div>
+      </div>
+      <div class="timer-controls">
+        <button id="toggleBtn" class="btn start" disabled>Start</button>
+        <button id="completeBtn" class="btn complete" disabled>Complete</button>
+        <button id="exitBtn" class="btn delete" disabled>Exit</button>
+      </div>
+    </div>
+
+    <!-- Progress Panel (New: Wrapped all progress elements here) -->
+    <div class="progress">
+      <div class="progress-header">📊 Progress</div>
+      <div class="progress-date-container">
+        <label for="progressDate">Select Date:</label>
+        <input type="date" id="progressDate" />
+      </div>
+      <div id="progressChartContainer" class="progress-chart">
+        <!-- Chart will be rendered here -->
+      </div>
+      <div id="noDataMessage" class="no-data-message">
+        No data available for selected date.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/navbar/navbar.js"></script>
+  <script src="/timer.js"></script>
+  <script src="/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/progress.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+/* Navigation styling */
+nav {
+  position: fixed;       /* Make navbar fixed */
+  top: 0;                /* Stick to the top */
+  left: 0;               /* Align to left edge */
+  width: 100%;           /* Span the full width of the page */
+  height: 20vh;
+  background-color: rgb(211, 207, 207);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: rgb(39, 49, 55);
+  font-weight: bold;
+  z-index: 1000;         /* Keep it above other content */
+}
+
+/* Optional brand styling */
+.brand {
+  text-align: center;
+}
+
+/* Position menu icon to the left */
+#menuIcon {
+  position: fixed;   /* instead of absolute */
+  top: 50px;
+  left: 50px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1100; /* higher than panel */
+}
+
+
+/* Side Panel */
+#sidePanel {
+  position: fixed;
+  top: 0;
+  left: -250px; /* hidden initially */
+  width: 150px;
+  height: 100%;
+  background-color: rgb(114, 153, 178);
+  color: white;
+  transition: left 0.3s ease;
+  padding-top: 80px;
+  z-index: 1000; /* 👈 lower than menuIcon */
+}
+
+#sidePanel ul {
+  list-style: none;
+}
+
+#sidePanel ul li {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#sidePanel ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+#sidePanel ul li a:hover {
+  color: rgb(215, 213, 213);
+}
+
+/* When active */
+#sidePanel.active {
+  left: 0;
+}
+
+#menuIcon.rotated {
+  transform: rotate(90deg);
+  
+}
